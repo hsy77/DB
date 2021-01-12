@@ -14,7 +14,7 @@ from init_db.init_database import New_order_unpaid,New_order_unreceived,New_orde
 #======如果不运行自动取消订单，请注释掉以下部分
 import redis #为了实现自动删除超时订单
 #连接redis数据库
-r=redis.StrictRedis(host='localhost',port=6379,db=0,decode_responses=True)
+# r=redis.StrictRedis(host='localhost',port=6379,db=0,decode_responses=True)
 #===================
 class Buyer(db_conn.DBConn):
     def __init__(self):
@@ -102,7 +102,7 @@ class Buyer(db_conn.DBConn):
             self.session.close()
             print("order_id",uid)
             #===============注释掉
-            r.setex(uid,15,'order') #先设置30s，测试好之后再改成其他时间
+            # r.setex(uid,15,'order') #先设置30s，测试好之后再改成其他时间
             #===============
             order_id = uid
         except sqlite.Error as e:
